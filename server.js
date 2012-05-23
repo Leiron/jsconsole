@@ -1,6 +1,6 @@
 // pending connect exposing static.mime (not available in npm yet)
-var mime = require('connect/node_modules/mime');               
-mime.define({ 'text/cache-manifest': ['appcache'] });                                                                             
+var mime = require('connect/node_modules/mime');
+mime.define({ 'text/cache-manifest': ['appcache'] });
 
 var connect = require('connect'),
     parse = require('url').parse,
@@ -70,13 +70,11 @@ function remoteServer(app) {
 }
 
 // connect.static.mime.define('text/cache-manifest', ['appcache']);
-
-var server = connect.createServer(
-  connect.bodyParser(),
-  connect.logger(),
-  connect.static(__dirname),
-  connect.router(remoteServer)
-);
+var server = connect.createServer()
+  .use(connect.bodyParser())
+  .use(connect.logger())
+  .use(connect.static(__dirname))
+  .use(remoteServer);
 
 console.log('Listening on ' + (process.argv[2] || 80));
 server.listen(parseInt(process.argv[2]) || 80);
