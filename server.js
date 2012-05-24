@@ -1,6 +1,4 @@
 
-// pending connect exposing static.mime (not available in npm yet)
-
 var express     = require('express'),
     app         = module.exports = express.createServer(),
     parse       = require('url').parse,
@@ -16,12 +14,12 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(__dirname));
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function(){
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname));
   app.use(express.errorHandler());
 });
 
