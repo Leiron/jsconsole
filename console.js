@@ -656,8 +656,11 @@ var exec = document.getElementById('exec'),
 
           sse = new EventSource('/remote/' + id + '/log');
           sse.onopen = function () {
+            var protocol = window.location.protocol,
+                host = window.location.host,
+                port = window.location.port;
             remoteId = id;
-            window.top.info('Connected to "' + id + '"\n\n<script src="http://jsconsole.com/remote.js?' + id + '"></script>');
+            window.top.info('Connected to "' + id + '"\n\n<script src="' + protocol + '//' + host + '/remote.js?' + id + '"></script>');
           };
 
           sse.onmessage = function (event) {
