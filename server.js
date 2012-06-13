@@ -5,7 +5,8 @@ var express     = require('express'),
     querystring = require('querystring').parse,
     sessions    = { run: {}, log: {} },
     eventid     = 0,
-    uuid        = require('node-uuid');
+    uuid        = require('node-uuid'),
+    port        = parseInt(argv.length >= 3 ? argv[2] : 80);
 
 app.configure(function(){
   app.use(express.bodyParser());
@@ -81,5 +82,5 @@ app.post('/remote/:id/run', function (req, res) {
   res.end();
 });
 
-console.log('Listening on ' + (process.argv[2] || 80));
-app.listen(parseInt(process.argv[2]) || 80);
+console.log('Listening on ' + port);
+app.listen(port);
