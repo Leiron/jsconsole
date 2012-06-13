@@ -6,7 +6,7 @@ var express     = require('express'),
     sessions    = { run: {}, log: {} },
     eventid     = 0,
     uuid        = require('node-uuid'),
-    port        = parseInt(argv.length >= 3 ? argv[2] : 80);
+    port        = parseInt(process.argv.length >= 3 ? process.argv[2] : 80);
 
 app.configure(function(){
   app.use(express.bodyParser());
